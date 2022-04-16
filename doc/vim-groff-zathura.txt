@@ -1,0 +1,1 @@
+*vim-groff-zathura.txt* A vim plugin for displaying Groff files in the Zathura document viewer.  
