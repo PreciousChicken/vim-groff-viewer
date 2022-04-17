@@ -21,7 +21,8 @@ function! PrintPS()
 	execute "silent !groff -me '" . fullPath . "' | lp"
 endfunction
 
-nnoremap <Leader>s :call ZathuraOpenPS()<CR>
+nnoremap <Leader>o :call ZathuraOpenPS()<CR>
 nnoremap <Leader>p :call PrintPS()<CR>
 
+" TODO Can I limit to just groff files?
 autocmd BufWritePost * call SaveTempPS()
