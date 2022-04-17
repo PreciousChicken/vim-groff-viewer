@@ -4,7 +4,8 @@ let s:tempName = tempname()
 
 function! SaveTempPS()
 	let fullPath = expand("%:p")
-	execute "silent !groff -me '" . fullPath . "' > '" . s:tempName . "' &"
+	" TODO: I need to setdpaper in a variable
+	execute "silent !groff -me -dpaper=a4 '" . fullPath . "' > '" . s:tempName . "' &"
 endfunction
 
 function! ZathuraOpenPS()
