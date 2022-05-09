@@ -1,6 +1,10 @@
 "opens groff me file in zathura
 
 let s:tempName = tempname()
+if ! exists('g:groffviewer')
+    let g:groffviewer = 'xdg-open'
+endif
+
 
 function! SaveTempPS()
 	let fullPath = expand("%:p")
@@ -9,11 +13,9 @@ function! SaveTempPS()
 endfunction
 
 function! ZathuraOpenPS()
+	echo "silent !" . g:groffviewer . " " . s:tempName . " &"
 	call SaveTempPS()
-	" let fullPath = expand("%:p")
-	" let fileName = expand("%:t")
-	" execute "silent !groff -me '" . fullPath . "' > '" . s:tempName . "' | zathura '" . s:tempName . "' &"
-	execute "silent !zathura '" . s:tempName . "' &"
+	execute "silent !" . g:groffviewer . " " . s:tempName . " &"
 endfunction
 
 function! PrintPS()
