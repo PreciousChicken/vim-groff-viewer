@@ -1,4 +1,4 @@
-"opens groff me file in zathura
+"opens groff files in user selected viewer
 
 let s:tempName = tempname()
 
@@ -15,7 +15,9 @@ endif
 
 function! SaveTempPS()
 	let fullPath = expand("%:p")
-	execute "silent !groff -me " . g:groffviewer_options . " " . fullPath . " > " . s:tempName . " &"
+	" reads macro package (e.g. ms, mom) from file extension
+	let macro = expand('%:e')
+	execute "silent !groff -m " . macro . " " . g:groffviewer_options . " " . fullPath . " > " . s:tempName . " &"
 endfunction
 
 function! ZathuraOpenPS()
