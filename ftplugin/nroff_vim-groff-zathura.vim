@@ -1,21 +1,27 @@
 "opens groff me file in zathura
 
 let s:tempName = tempname()
-if ! exists('g:groffviewer')
-    let g:groffviewer = 'xdg-open'
+
+" If user has not specified groff viewer (e.g. Zathura) then uses system
+" default
+if ! exists('g:groffviewer_default')
+    let g:groffviewer_default = 'xdg-open'
 endif
 
+" If user has not specified groff options then provides none
+if ! exists('g:groffviewer_options')
+    let g:groffviewer_options = ' '
+endif
 
 function! SaveTempPS()
 	let fullPath = expand("%:p")
-	" TODO: I need to setdpaper in a variable
-	execute "silent !groff -me -dpaper=a4 '" . fullPath . "' > '" . s:tempName . "' &"
+	execute "silent !groff -me " . g:groffviewer_options . " " . fullPath . " > " . s:tempName . " &"
 endfunction
 
 function! ZathuraOpenPS()
-	echo "silent !" . g:groffviewer . " " . s:tempName . " &"
+	echo "silent !" . g:groffviewer_default . " " . s:tempName . " &"
 	call SaveTempPS()
-	execute "silent !" . g:groffviewer . " " . s:tempName . " &"
+	execute "silent !" . g:groffviewer_default . " " . s:tempName . " &"
 endfunction
 
 function! PrintPS()
