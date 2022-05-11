@@ -13,26 +13,26 @@ if ! exists('g:groffviewer_options')
     let g:groffviewer_options = ' '
 endif
 
-function! SaveTempPS()
+function! s:SaveTempPS()
 	let fullPath = expand("%:p")
 	" reads macro package (e.g. ms, mom) from file extension
 	let macro = expand('%:e')
 	execute "silent !groff -m " . macro . " " . g:groffviewer_options . " " . fullPath . " > " . s:tempName . " &"
 endfunction
 
-function! ZathuraOpenPS()
+function! s:ZathuraOpenPS()
 	echo "silent !" . g:groffviewer_default . " " . s:tempName . " &"
-	call SaveTempPS()
+	call s:SaveTempPS()
 	execute "silent !" . g:groffviewer_default . " " . s:tempName . " &"
 endfunction
 
-function! PrintPS()
+function! s:PrintPS()
 	let fullPath = expand("%:p")
 	execute "silent !groff -me '" . fullPath . "' | lp"
 endfunction
 
-nnoremap <Leader>o :call ZathuraOpenPS()<CR>
-nnoremap <Leader>p :call PrintPS()<CR>
+nnoremap <Leader>o :call s:ZathuraOpenPS()<CR>
+nnoremap <Leader>p :call s:PrintPS()<CR>
 
 " TODO Can I limit to just groff files?
-autocmd BufWritePost * call SaveTempPS()
+autocmd BufWritePost * call s:SaveTempPS()
