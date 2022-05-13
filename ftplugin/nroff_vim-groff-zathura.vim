@@ -20,19 +20,19 @@ function! s:SaveTempPS()
 	execute "silent !groff -m " . macro . " " . g:groffviewer_options . " " . fullPath . " > " . s:tempName . " &"
 endfunction
 
-function! s:ZathuraOpenPS()
+function! ZathuraOpenPS()
 	echo "silent !" . g:groffviewer_default . " " . s:tempName . " &"
 	call s:SaveTempPS()
 	execute "silent !" . g:groffviewer_default . " " . s:tempName . " &"
 endfunction
 
-function! s:PrintPS()
+function! PrintPS()
 	let fullPath = expand("%:p")
 	execute "silent !groff -me '" . fullPath . "' | lp"
 endfunction
 
-nnoremap <Leader>o :call s:ZathuraOpenPS()<CR>
-nnoremap <Leader>p :call s:PrintPS()<CR>
+nnoremap <Leader>o :call ZathuraOpenPS()<CR>
+nnoremap <Leader>p :call PrintPS()<CR>
 
 " TODO Can I limit to just groff files?
 autocmd BufWritePost * call s:SaveTempPS()
