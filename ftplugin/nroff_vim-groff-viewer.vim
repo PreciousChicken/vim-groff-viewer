@@ -1,6 +1,12 @@
 "opens groff files in user selected viewer
+	
+" Disabling option per :help write-filetype-plugin
+if exists("b:did_ftplugin")
+	finish
+endif
+let b:did_ftplugin = 1
 
-let s:tempName = tempname()
+let b:tempName = tempname()
 
 " If user has not specified groff viewer (e.g. Zathura) then uses system
 " default
@@ -17,13 +23,13 @@ function! s:SaveTempPS()
 	let fullPath = expand("%:p")
 	" reads macro package (e.g. ms, mom) from file extension
 	let macro = expand('%:e')
-	execute "silent !groff -m " . macro . " " . g:groffviewer_options . " " . fullPath . " > " . s:tempName . " &"
+	execute "silent !groff -m " . macro . " " . g:groffviewer_options . " " . fullPath . " > " . b:tempName . " &"
 endfunction
 
 function! ZathuraOpenPS()
-	echo "silent !" . g:groffviewer_default . " " . s:tempName . " &"
+	echo "silent !" . g:groffviewer_default . " " . b:tempName . " &"
 	call s:SaveTempPS()
-	execute "silent !" . g:groffviewer_default . " " . s:tempName . " &"
+	execute "silent !" . g:groffviewer_default . " " . b:tempName . " &"
 endfunction
 
 function! PrintPS()
