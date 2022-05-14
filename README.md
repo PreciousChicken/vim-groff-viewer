@@ -6,7 +6,14 @@ A very beta version of a vim plugin for displaying [Groff](https://www.gnu.org/s
 
 ## Installation
 
-TODO
+Neovim manual install:
+
+```bash
+mkdir -p ~/.local/share/nvim/site/pack/preciouschicken/start/groff-viewer
+git clone https://github.com/PreciousChicken/vim-groff-viewer.git ~/.local/share/nvim/site/pack/preciouschicken/start/groff-viewer
+nvim -u NONE -c "helptags ALL" -c q
+```
+
 
 ## Usage
 
