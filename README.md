@@ -2,7 +2,9 @@
 
 ## Introduction
 
-A very beta version of a vim plugin for displaying [Groff](https://www.gnu.org/software/groff/) files in a document viewer.  The choice of document viewer is left to the user but should auto-update and preferably support the postscript file format - examples are [Zathura](https://pwmt.org/projects/zathura/) and [Okular](https://okular.kde.org/).
+A very beta version of a vim plugin for displaying [Groff](https://www.gnu.org/software/groff/) files in a document viewer.  The choice of document viewer is left to the user, but should auto-update[^1] and preferably support the postscript file format - examples are [Zathura](https://pwmt.org/projects/zathura/) and [Okular](https://okular.kde.org/).
+
+[^1]: A document viewer that auto-updates is one that refreshes the view when the underlying document changes.
 
 ## Installation
 
