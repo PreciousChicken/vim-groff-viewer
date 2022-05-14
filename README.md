@@ -2,18 +2,27 @@
 
 ## Introduction
 
-A very beta version of a vim plugin for displaying [Groff](https://www.gnu.org/software/groff/) files in the Zathura, or similar, document viewer.  Not yet for public use.
+A very beta version of a vim plugin for displaying [Groff](https://www.gnu.org/software/groff/) files in a document viewer.  The choice of document viewer is left to the user but should auto-update and preferably support the postscript file format - examples are [Zathura](https://pwmt.org/projects/zathura/) and [Okular](https://okular.kde.org/).
 
 ## Installation
 
-Neovim manual install:
+Install using your preferred package manager, or manually install:
+
+### Neovim
 
 ```bash
 mkdir -p ~/.local/share/nvim/site/pack/preciouschicken/start/groff-viewer
 git clone https://github.com/PreciousChicken/vim-groff-viewer.git ~/.local/share/nvim/site/pack/preciouschicken/start/groff-viewer
-nvim -u NONE -c "helptags ALL" -c q
+nvim -u NONE -c "helptags groff-viewer/doc" -c q
 ```
 
+### Vim
+
+```bash
+mkdir -p ~/.vim/pack/preciouschicken/start/groff-viewer
+git clone https://github.com/PreciousChicken/vim-groff-viewer.git ~/.vim/pack/preciouschicken/start/groff-viewer
+vim -u NONE -c "helptags groff-viewer/doc" -c q
+```
 
 ## Usage
 
