@@ -66,14 +66,14 @@ let groffviewer_options="-dpaper=a4"
 
 ### Using a pdf-only document viewer
 
-Using a document viewer that supports pdf but not postscript is possible by changing using the groff options in your _vim.rc_ / _init.vim_, using [ePDFView](http://freshmeat.sourceforge.net/projects/epdfview) for this example:
+Using a document viewer that supports pdf but not postscript is possible by amending the groff options in your _vim.rc_ / _init.vim_ for pdf output.  For example should you want to use [ePDFView](http://freshmeat.sourceforge.net/projects/epdfview) as a document viewer:
 
 ```vimrc
 let groffviewer_default="epdfview"
 let groffviewer_options="-T pdf"
 ```
 
-A pdf document viewer that auto-reloads[^1] should however still be chosen otherwise the document will fail to update on write.
+A pdf document viewer that auto-reloads[^1] should however still be chosen otherwise the document will fail to update on write (ePDFView would be a bad choice in this regard).
 
 ### Setting the printer
 
