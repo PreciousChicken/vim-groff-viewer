@@ -77,7 +77,11 @@ A pdf document viewer that auto-reloads[^1] should however still be chosen other
 
 ### Setting the printer
 
-The `<leader>p` mapping uses the [lp](https://man7.org/linux/man-pages/man1/lp.1.html) command is used to print; which assumes a [default printer has been set](https://www.mattcutts.com/blog/change-default-printer-linux-firefox/).
+The `<leader>p` mapping uses the [lp](https://man7.org/linux/man-pages/man1/lp.1.html) command to hard copy print; this assumes a [default printer has been set](https://www.mattcutts.com/blog/change-default-printer-linux-firefox/).
+
+## Documentation 
+
+TODO
 
 ## Known issues
 
