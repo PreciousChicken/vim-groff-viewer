@@ -75,6 +75,10 @@ let groffviewer_options="-T pdf"
 
 A pdf document viewer that auto-reloads[^1] should however still be chosen otherwise the document will fail to update on write.
 
+### Setting the printer
+
+The `<leader>p` mapping uses the [lp](https://man7.org/linux/man-pages/man1/lp.1.html) command is used to print; which assumes a [default printer has been set](https://www.mattcutts.com/blog/change-default-printer-linux-firefox/).
+
 ## Known issues
 
 The pdf-only document viewers [mupdf](https://mupdf.com/) and [apvlp](https://github.com/naihe2010/apvlv) do not work with the `-T pdf` option listed above.
