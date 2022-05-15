@@ -33,7 +33,7 @@ With a groff file open in the current buffer select:
 - `<leader>o` - Open groff file in selected document viewer
 - `<leader>p` -  Hard copy print groff file
 
-The groff macro used by the plugin is determined by the file extension, for example the file ***myfile.me*** will be processed using the ***me*** macro package.  For further information on groff file extensions see [man 5 groff_filenames](https://manpages.ubuntu.com/manpages/bionic/en/man7/groff_filenames.7.html).
+The groff macro used by the plugin is determined by the file extension, for example the file _myfile.me_ will be processed using the _me_ macro package.  For further information on groff file extensions see [man 5 groff_filenames](https://manpages.ubuntu.com/manpages/bionic/en/man7/groff_filenames.7.html).
 
 ## Configuration
 
@@ -48,21 +48,34 @@ xdg-mime default org.pwmt.zathura.desktop application/postscript
 Alternatively if you do not wish to make a system wide change, then the plugin will ignore the xdg-open default if the following line is adding to the **.vimrc**, with the variable as the postscript viewer:
 
 ```vimrc
-let groffviewer="zathura"
+let groffviewer_default="zathura"
 ```
 or, for instance:
 
 ```vimrc
-let groffviewer="okular"
+let groffviewer_default="okular"
 ```
 
 ### Setting groff options
 
-The command line options available to groff can be added via your ***vim.rc***  e.g.:
+The command line options available to groff can be added via your _vim.rc_ / _init.vim_ e.g.:
 
 ```vimrc
 let groffviewer_options="-dpaper=a4"
 ```
+
+### Using a pdf-only document viewer
+
+Using a document viewer that supports pdf but not postscript is possible by changing using the groff options in your _vim.rc_ / _init.vim_, using [ePDFView](http://freshmeat.sourceforge.net/projects/epdfview) for this example:
+
+```vimrc
+let groffviewer_default="epdfview"
+let groffviewer_options="-T pdf"
+```
+
+## Known issues
+
+The pdf-only document viewers [mupdf](https://mupdf.com/) and [apvlp](https://github.com/naihe2010/apvlv) do not work with the `-T pdf` option listed above.
 
 ## Contributing
 
