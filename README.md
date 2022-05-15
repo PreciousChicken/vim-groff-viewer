@@ -89,7 +89,7 @@ The pdf-only document viewers [mupdf](https://mupdf.com/) and [apvlp](https://gi
 
 ## Contributing
 
-TODO
+Contributions welcome: issues, pull requests, etc.
 
 ## Credits
 
