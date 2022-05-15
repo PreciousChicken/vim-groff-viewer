@@ -8,7 +8,7 @@ A very beta version of a vim plugin for displaying [Groff](https://www.gnu.org/s
 
 ## Installation
 
-Install using your preferred package manager, or manually install:
+Install using your preferred plugin manager, or manually install:
 
 ### Neovim
 
