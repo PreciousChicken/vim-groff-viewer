@@ -2,9 +2,9 @@
 
 ## Introduction
 
-A very beta version of a vim plugin for displaying [Groff](https://www.gnu.org/software/groff/) files in a document viewer as determined by the system default or chosen by the user.  The document viewer used should auto-update[^1] and preferably support the postscript file format - examples are [Zathura](https://pwmt.org/projects/zathura/), [Evince](https://help.gnome.org/users/evince/stable/), [Okular](https://okular.kde.org/) or [Xreader](https://github.com/linuxmint/xreader/).
+A very beta version of a vim plugin for displaying [Groff](https://www.gnu.org/software/groff/) files in a document viewer as determined by the system default or chosen by the user.  The document viewer used should auto-reload[^1] and preferably support the postscript file format - examples are [Zathura](https://pwmt.org/projects/zathura/), [Evince](https://help.gnome.org/users/evince/stable/), [Okular](https://okular.kde.org/) or [Xreader](https://github.com/linuxmint/xreader/).
 
-[^1]: A document viewer that auto-updates is one that refreshes the view when the underlying document changes.
+[^1]: A document viewer that auto-reloads is one that refreshes the view when the underlying document changes.
 
 ## Installation
 
@@ -31,13 +31,13 @@ With a groff file open in the current buffer select:
 - `<leader>o` - Open groff file in selected document viewer
 - `<leader>p` -  Hard copy print groff file
 
-Saving the file in the normal way, e.g. `:w`, will result in the groff preview updating in the document viewer, providing the selected viewer auto-updates[^1].
+Saving the file in the normal way, e.g. `:w`, will result in the groff preview updating in the document viewer, providing the selected viewer auto-reloads[^1].
 
 The groff macro used by the plugin is determined by the file extension, for example the file _myfile.me_ will be processed using the _me_ macro package.  For further information on groff file extensions see [man 5 groff_filenames](https://manpages.ubuntu.com/manpages/bionic/en/man7/groff_filenames.7.html).
 
 ## Configuration
 
-### Setting postscript viewer
+### Setting postscript document viewer
 
 The system default for opening postscript files according to [xdg-open](https://portland.freedesktop.org/doc/xdg-open.html) will be used as the default document viewer.  The default xdg-open postscript application can be [changed to Zathura](https://wiki.archlinux.org/title/zathura#Make_zathura_the_default_pdf_viewer) by the following terminal command:
 
@@ -73,7 +73,7 @@ let groffviewer_default="epdfview"
 let groffviewer_options="-T pdf"
 ```
 
-A pdf document viewer that auto-reloads[^1] should however still be chosen otherwise the document will fail to update on write (ePDFView would be a bad choice in this regard).
+A pdf document viewer that auto-reloads should however still be chosen otherwise the document will fail to update on write (ePDFView would be a bad choice in this regard).
 
 ### Setting the printer
 
