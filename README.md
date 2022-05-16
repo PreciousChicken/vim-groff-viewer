@@ -35,6 +35,10 @@ Saving the file in the normal way, e.g. `:w`, will result in the groff preview u
 
 The groff macro used by the plugin is determined by the file extension, for example the file _myfile.me_ will be processed using the _me_ macro package.  For further information on groff file extensions see [man 5 groff_filenames](https://manpages.ubuntu.com/manpages/bionic/en/man7/groff_filenames.7.html).
 
+## Video demonstration
+
+[![vim-groff-viewer demo](https://youtu.be/-NOvAKriByM)](https://youtu.be/-NOvAKriByM)
+
 ## Configuration
 
 ### Setting postscript document viewer
