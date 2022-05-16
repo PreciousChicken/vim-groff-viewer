@@ -37,7 +37,7 @@ The groff macro used by the plugin is determined by the file extension, for exam
 
 ## Video demonstration
 
-[![vim-groff-viewer demo](https://youtu.be/-NOvAKriByM)](https://youtu.be/-NOvAKriByM)
+[![vim-groff-viewer demo](https://img.youtube.com/vi/-NOvAKriByM/0.jpg)](https://youtu.be/-NOvAKriByM)
 
 ## Configuration
 
