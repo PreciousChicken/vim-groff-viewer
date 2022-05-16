@@ -87,6 +87,8 @@ TODO
 
 The pdf-only document viewers [mupdf](https://mupdf.com/) and [apvlp](https://github.com/naihe2010/apvlv) do not work with the `-T pdf` option listed above.
 
+Error handling needs to be improved.  If groff fails to create valid output due to a syntax error, no warning is generated and subsequently xdg-open may attempt to use the wrong application to open a file it does not recognise as postscript.
+
 ## Contributing
 
 Contributions welcome: issues, pull requests, etc.
