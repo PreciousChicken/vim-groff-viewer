@@ -85,13 +85,13 @@ The `<leader>p` mapping uses the [lp](https://man7.org/linux/man-pages/man1/lp.1
 
 ## Documentation 
 
-Helpags for the plugin can be loaded by using the command `:helptags ALL` when a groff file is open.  Help for vim-groff-viewer will then be accessible within Vim by using `:help groff-viewer`.
+Helptags for the plugin can be loaded by using the command `:helptags ALL` when a groff file is open.  Help will then be accessible within Vim via `:help groff-viewer`.
 
 ## Known issues
 
-The pdf-only document viewers [mupdf](https://mupdf.com/) and [apvlp](https://github.com/naihe2010/apvlv) do not work with the `-T pdf` option listed above.
+-  The pdf-only document viewers [mupdf](https://mupdf.com/) and [apvlp](https://github.com/naihe2010/apvlv) do not work with the `-T pdf` option listed above.
 
-Error handling needs to be improved.  If groff fails to create valid output due to a syntax error, no warning is generated and subsequently xdg-open may attempt to use the wrong application to open a file it does not recognise as postscript.
+-  Error handling needs to be improved.  If groff fails to create valid output due to a syntax error, no warning is generated and subsequently xdg-open may attempt to use the wrong application to open a file it does not recognise as postscript.
 
 ## Contributing
 
