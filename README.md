@@ -2,7 +2,7 @@
 
 ## Introduction
 
-A very beta version of a vim plugin for displaying [Groff](https://www.gnu.org/software/groff/) files in a document viewer as determined by the system default or chosen by the user.  The document viewer used should auto-reload[^1] and preferably support the postscript file format - examples are [Zathura](https://pwmt.org/projects/zathura/), [Evince](https://help.gnome.org/users/evince/stable/), [Okular](https://okular.kde.org/) or [Xreader](https://github.com/linuxmint/xreader/).
+A Vim plugin for displaying [Groff](https://www.gnu.org/software/groff/) files in a document viewer as determined by the system default or chosen by the user.  The document viewer used should auto-reload[^1] and preferably support the postscript file format - examples are [Zathura](https://pwmt.org/projects/zathura/), [Evince](https://help.gnome.org/users/evince/stable/), [Okular](https://okular.kde.org/) or [Xreader](https://github.com/linuxmint/xreader/).
 
 [^1]: A document viewer that auto-reloads is one that refreshes the view when the underlying document changes.
 
