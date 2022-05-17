@@ -1,4 +1,8 @@
-"opens groff files in user selected viewer
+" vim-groff-viewer: Displays groff files in document viewer
+" Last Change:	2022 May 17
+" Maintainer:	gene@preciouschicken.com
+" License:	Aoache-2.0
+" URL: https://github.com/PreciousChicken/vim-groff-viewer
 	
 " Disabling option per :help write-filetype-plugin
 if exists("b:did_ftplugin")
@@ -6,19 +10,20 @@ if exists("b:did_ftplugin")
 endif
 let b:did_ftplugin = 1
 
+" Creates temp file for buffer
 let b:tempName = tempname()
 
-" If user has not specified groff viewer (e.g. Zathura) then uses system
-" default
+" If user has not specified groff viewer (e.g. Zathura) then uses xdg-open
 if ! exists('g:groffviewer_default')
     let g:groffviewer_default = 'xdg-open'
 endif
 
-" If user has not specified groff options then provides none
+" If user has not specified groff options then sets nil
 if ! exists('g:groffviewer_options')
     let g:groffviewer_options = ' '
 endif
 
+" Runs groff to produce postscript temp file
 function! s:SaveTempPS()
 	let fullPath = expand("%:p")
 	" reads macro package (e.g. ms, mom) from file extension
@@ -26,6 +31,7 @@ function! s:SaveTempPS()
 	execute "silent !groff -m " . macro . " " . g:groffviewer_options . " " . fullPath . " > " . b:tempName . " &"
 endfunction
 
+" Opens viewer loads temp file
 function! OpenViewer()
 	call s:SaveTempPS()
 	execute "silent !" . g:groffviewer_default . " " . b:tempName . " &"
@@ -33,6 +39,7 @@ function! OpenViewer()
 	echom "Opening " . expand('%:t') . " with " . g:groffviewer_default . " viewer."
 endfunction
 
+" Runs groff to produce ps on printer
 function! PrintPS()
 	let fullPath = expand("%:p")
 	execute "silent !groff -me '" . fullPath . "' | lp"
@@ -41,5 +48,9 @@ endfunction
 nnoremap <Leader>o :call OpenViewer()<CR>
 nnoremap <Leader>p :call PrintPS()<CR>
 
-" TODO Can I limit to just groff files?
-autocmd BufWritePost * call s:SaveTempPS()
+" Runs SaveTempPS on user :w command
+augroup savetemp
+	autocmd!
+	autocmd BufWritePost * call s:SaveTempPS()
+augroup end
+
