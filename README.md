@@ -85,7 +85,7 @@ The `<leader>p` mapping uses the [lp](https://man7.org/linux/man-pages/man1/lp.1
 
 ## Documentation 
 
-TODO
+Helpags for the plugin can be loaded by using the command `:helptags ALL` when a groff file is open.  Help for vim-groff-viewer will then be accessible within Vim by using `:help groff-viewer`.
 
 ## Known issues
 
@@ -104,5 +104,4 @@ The example used in the demonstration video can be found in the [Groff and the a
 ## Related work
 
 An alternative to vim-groff-viewer is [texgroff.vim](https://github.com/L04DB4L4NC3R/texgroff.vim).
-
 
