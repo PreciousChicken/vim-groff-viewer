@@ -1,1 +1,93 @@
-*vim-groff-zathura.txt* A vim plugin for displaying Groff files in the Zathura document viewer.  
+*groff-viewer.txt*  Display Groff files in a document viewer.  
+
+====================================================================
+CONTENTS                                         *GroffViewerContents*
+
+    1. Introduction ......... |GroffViewerIntroduction|
+    2. Usage ................ |GroffViewerUsage|
+    3. Configuration ........ |GroffViewerConfiguration|
+    4. Further reading ...... |GroffViewerFurtherReading|
+
+====================================================================
+Section 1: Introduction                      *GroffViewerIntroduction*
+
+A vim file type plugin for displaying Groff files in a document 
+viewer as determined by the system default or chosen by the user. 
+The document viewer used should auto-reload and preferably support 
+the postscript file format - examples are Zathura, Evince, Okular 
+or Xreader.
+
+====================================================================
+Section 2: Usage                                    *GroffViewerUsage*
+
+With a groff file open in the current buffer select:
+
+    `<leader>o` - Open groff file in selected document viewer
+    `<leader>p` - Hard copy print groff file
+
+Saving the file in the normal way, e.g. `:w`, will result in the groff 
+preview updating in the document viewer, providing the selected 
+viewer auto-reloads.
+
+The groff macro used by the plugin is determined by the file 
+extension, for example the file `myfile.me` will be processed using 
+the `-me` macro package. For further information on groff file 
+extensions see man 5 groff_filenames.
+
+====================================================================
+Section 2: Configuration                    *GroffViewerConfiguration*
+
+Setting postscript document viewer ~
+
+The system default for opening postscript files according to 
+xdg-open will be used as the default document viewer. The default 
+xdg-open postscript application can be changed to, for example, 
+Zathura by the following Linux terminal command:
+
+`xdg-mime default org.pwmt.zathura.desktop application/postscript`
+
+Alternatively if you do not wish to make a system wide change, then 
+the plugin will ignore the xdg-open default if the following line is 
+adding to the `.vimrc` / `init.vim`, with the variable as the postscript 
+viewer:
+
+`let groffviewer_default="zathura"`
+
+or, for instance:
+
+`let groffviewer_default="okular"`
+
+Setting groff options ~
+
+The command line options available to groff can be added via your 
+`vim.rc` / `init.vim` e.g.:
+
+`let groffviewer_options="-dpaper=a4"`
+
+Using a pdf-only document viewer ~
+
+Using a document viewer that supports pdf but not postscript is 
+possible by amending the groff options in your `vim.rc` / `init.vim` 
+for pdf output. For example should you want to use ePDFView as a 
+document viewer:
+
+`let groffviewer_default="epdfview"`
+`let groffviewer_options="-T pdf"`
+
+A pdf document viewer that auto-reloads should however still be 
+chosen otherwise the document will fail to update on write (ePDFView 
+would be a bad choice in this regard).
+
+Setting the printer ~
+
+The `<leader>p` mapping uses the lp command to hard copy print; this 
+assumes a default printer has been set.
+
+====================================================================
+Section 4: Further reading                 *GroffViewerFurtherReading*
+
+Known issues, contributing guidelines, changelog, etc can be found at:
+
+https://github.com/PreciousChicken/vim-groff-viewer
+
+ vim:tw=70:ts=2:ft=help
