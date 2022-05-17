@@ -43,7 +43,7 @@ The groff macro used by the plugin is determined by the file extension, for exam
 
 ### Setting postscript document viewer
 
-The system default for opening postscript files according to [xdg-open](https://portland.freedesktop.org/doc/xdg-open.html) will be used as the default document viewer.  The default xdg-open postscript application can be [changed to Zathura](https://wiki.archlinux.org/title/zathura#Make_zathura_the_default_pdf_viewer) by the following terminal command:
+The system default for opening postscript files according to [xdg-open](https://portland.freedesktop.org/doc/xdg-open.html) will be used as the default document viewer.  The default xdg-open postscript application can be changed to, for example, Zathura by the following terminal command:
 
 ```bash
 xdg-mime default org.pwmt.zathura.desktop application/postscript
