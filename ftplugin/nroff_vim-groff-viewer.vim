@@ -26,7 +26,7 @@ function! s:SaveTempPS()
 	execute "silent !groff -m " . macro . " " . g:groffviewer_options . " " . fullPath . " > " . b:tempName . " &"
 endfunction
 
-function! ZathuraOpenPS()
+function! OpenViewer()
 	echo "silent !" . g:groffviewer_default . " " . b:tempName . " &"
 	call s:SaveTempPS()
 	execute "silent !" . g:groffviewer_default . " " . b:tempName . " &"
@@ -37,7 +37,7 @@ function! PrintPS()
 	execute "silent !groff -me '" . fullPath . "' | lp"
 endfunction
 
-nnoremap <Leader>o :call ZathuraOpenPS()<CR>
+nnoremap <Leader>o :call OpenViewer()<CR>
 nnoremap <Leader>p :call PrintPS()<CR>
 
 " TODO Can I limit to just groff files?
