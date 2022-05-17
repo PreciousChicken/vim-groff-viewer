@@ -95,11 +95,14 @@ Error handling needs to be improved.  If groff fails to create valid output due 
 
 ## Contributing
 
-Contributions welcome: issues, pull requests, etc.
+Contributions welcome: issues, pull requests, etc; however please excuse in advance a slow response.
 
 ## Credits
 
-TODO
+The example used in the demonstration video can be found in the [Groff and the art of letter writing ](https://www.preciouschicken.com/blog/posts/groff-art-letter-writing/) tutorial.
 
+## Related work
+
+An alternative to vim-groff-viewer is [texgroff.vim](https://github.com/L04DB4L4NC3R/texgroff.vim).
 
 
