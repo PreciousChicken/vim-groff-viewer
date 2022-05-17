@@ -27,7 +27,7 @@ function! s:SaveTempPS()
 endfunction
 
 function! OpenViewer()
-	echo "silent !" . g:groffviewer_default . " " . b:tempName . " &"
+	echo "Opening " . expand('%:t') . " with " . g:groffviewer_default . " viewer."
 	call s:SaveTempPS()
 	execute "silent !" . g:groffviewer_default . " " . b:tempName . " &"
 endfunction
