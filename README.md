@@ -103,7 +103,7 @@ Helptags for the plugin can be loaded by using the command `:helptags ALL` when 
 
 ## Contributing
 
-Contributions welcome: issues, pull requests, etc; however please excuse in advance a slow response.
+Contributions welcome: issues, pull requests, etc; however please excuse in advance a slow response.  When raising an issue you are very much invited to suggest solutions!
 
 ## Credits
 
