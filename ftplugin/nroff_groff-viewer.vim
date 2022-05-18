@@ -43,6 +43,8 @@ endfunction
 function! PrintPS()
 	let fullPath = expand("%:p")
 	execute "silent !groff -me '" . fullPath . "' | lp"
+	redraw
+	echom "Printing " . expand('%:t') . "."
 endfunction
 
 nnoremap <Leader>o :call OpenViewer()<CR>
