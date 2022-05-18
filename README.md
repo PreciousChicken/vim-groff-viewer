@@ -24,9 +24,9 @@ mkdir -p ~/.vim/pack/preciouschicken/start/groff-viewer
 git clone https://github.com/PreciousChicken/vim-groff-viewer.git ~/.vim/pack/preciouschicken/start/groff-viewer
 ```
 
-Additionally ensure that you have the line `filetype plugin on` added to your `.vimrc` if not already[^5].
+Additionally ensure that you have the line `filetype plugin on` added to your `.vimrc` if not already[^2].
 
-[^5]: This does not appear to be needed for Neovim.
+[^2]: This does not appear to be needed for Neovim.
 
 ## Usage
 
@@ -95,7 +95,7 @@ Helptags for the plugin can be loaded by using the command `:helptags ALL` when 
 
 -  A correct `xdg-open` setting does not always result in the chosen application opening the postscript file[^3].  If this is the case, then use `groffviewer_default` to over-ride as above.
 
-[^3]: Testing using Neovim on a fresh install of Ubuntu 22.04 has consistently opened the file in Gedit, regardless of the `xdg-open` setting.  The same issue was not observed in Vim.
+[^3]: Testing on a fresh install of Ubuntu 22.04 has consistently opened the file in Gedit, regardless of the `xdg-open` setting.
 
 -  The pdf-only document viewers [mupdf](https://mupdf.com/) and [apvlp](https://github.com/naihe2010/apvlv) do not work with the `-T pdf` option listed above.
 
