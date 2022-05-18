@@ -89,6 +89,10 @@ Helptags for the plugin can be loaded by using the command `:helptags ALL` when 
 
 ## Known issues
 
+-  A correct `xdg-open` setting does not always result in the chosen application opening the postscript file[^3].  If this is the case, then use `groffviewer_default` to over-ride as above.
+
+[^3]: Testing using Neovim on a fresh install of Ubuntu 22.04 has consistently opened the file in Gedit, regardless of the `xdg-open` setting.  The same issue was not observed in Vim.
+
 -  The pdf-only document viewers [mupdf](https://mupdf.com/) and [apvlp](https://github.com/naihe2010/apvlv) do not work with the `-T pdf` option listed above.
 
 -  Error handling needs to be improved.  If groff fails to create valid output due to a syntax error, no warning is generated and subsequently xdg-open may attempt to use the wrong application to open a file it does not recognise as postscript.
