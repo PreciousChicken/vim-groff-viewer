@@ -24,6 +24,10 @@ mkdir -p ~/.vim/pack/preciouschicken/start/groff-viewer
 git clone https://github.com/PreciousChicken/vim-groff-viewer.git ~/.vim/pack/preciouschicken/start/groff-viewer
 ```
 
+Additionally ensure that you have the line `filetype plugin on` added to your `.vimrc` if not already[^5].
+
+[^5]: This does not appear to be needed for Neovim.
+
 ## Usage
 
 With a groff file open in the current buffer select:
