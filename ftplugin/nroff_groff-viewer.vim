@@ -1,5 +1,5 @@
 " vim-groff-viewer: Displays groff files in document viewer
-" Last Change:	2022 May 22
+" Last Change:	2022 Aug 7
 " Maintainer:	gene@preciouschicken.com
 " License:	Apache-2.0
 " URL: https://github.com/PreciousChicken/vim-groff-viewer
@@ -28,7 +28,7 @@ function! s:SaveTempPS()
 	let fullPath = expand("%:p")
 	" reads macro package (e.g. ms, mom) from file extension
 	let macro = expand('%:e')
-	execute "silent !groff -m " . macro . " " . g:groffviewer_options . " " . fullPath . " > " . b:tempName . " &"
+	execute "silent !groff -m " . macro . " " . g:groffviewer_options . " " . fullPath . " > " . b:tempName
 endfunction
 
 " Opens viewer loads temp file
