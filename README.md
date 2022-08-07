@@ -97,7 +97,7 @@ Helptags for the plugin can be loaded by using the command `:helptags ALL` when 
 
 [^3]: Testing on a fresh install of Ubuntu 22.04 has consistently opened the file in Gedit, regardless of the `xdg-open` setting.
 
--  The pdf-only document viewers [mupdf](https://mupdf.com/) and [apvlp](https://github.com/naihe2010/apvlv) do not work with the `-T pdf` option listed above.
+-  The pdf-only document viewer [apvlp](https://github.com/naihe2010/apvlv) does not work with the `-T pdf` option listed above.
 
 -  Error handling needs to be improved.  If groff fails to create valid output due to a syntax error, no warning is generated and subsequently xdg-open may attempt to use the wrong application to open a file it does not recognise as postscript.
 
