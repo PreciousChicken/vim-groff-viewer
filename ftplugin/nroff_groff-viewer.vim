@@ -1,7 +1,7 @@
 " vim-groff-viewer: Displays groff files in document viewer
-" Last Change:	2022 May 17
+" Last Change:	2022 May 22
 " Maintainer:	gene@preciouschicken.com
-" License:	Aoache-2.0
+" License:	Apache-2.0
 " URL: https://github.com/PreciousChicken/vim-groff-viewer
 	
 " Disabling option per :help write-filetype-plugin
