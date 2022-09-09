@@ -53,6 +53,6 @@ nnoremap <Leader>p :call PrintPS()<CR>
 " Runs SaveTempPS on user :w command
 augroup savetemp
 	autocmd!
-	autocmd BufWritePost * call s:SaveTempPS()
+	autocmd BufWritePost <buffer> call s:SaveTempPS()
 augroup end
 
