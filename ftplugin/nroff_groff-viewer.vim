@@ -41,8 +41,8 @@ endfunction
 
 " Runs groff to produce ps on printer
 function! PrintPS()
-	let fullPath = expand('%:p')
-	execute "silent !groff -me '" . fullPath . "' | lp"
+	call s:SaveTempPS()
+	execute "silent !lp " . b:tempName
 	redraw
 	echom "Printing " . expand('%:t') . "."
 endfunction
