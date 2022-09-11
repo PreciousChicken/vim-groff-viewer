@@ -8,7 +8,19 @@ A Vim plugin for displaying [Groff](https://www.gnu.org/software/groff/) files i
 
 ## Installation
 
-Install using your preferred plugin manager, or manually install:
+Install using your preferred plugin manager, for instance with [vim-plug](https://github.com/junegunn/vim-plug):
+
+```vim
+Plug 'PreciousChicken/vim-groff-viewer'
+```
+
+or [dein.vim](https://github.com/Shougo/dein.vim):
+
+```vim
+call dein#add('PreciousChicken/vim-groff-viewer')
+```
+
+Alternatively manually install:
 
 ### Neovim
 
