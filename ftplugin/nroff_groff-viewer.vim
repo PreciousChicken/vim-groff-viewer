@@ -3,7 +3,12 @@
 " Maintainer:	gene@preciouschicken.com
 " License:	Apache-2.0
 " URL: https://github.com/PreciousChicken/vim-groff-viewer
-	
+
+
+" TODO: From help:
+" <		Can also be used as a |method|: >
+" 			GetText()->writefile("thefile")
+
 " Disabling option per :help write-filetype-plugin
 if exists("b:did_ftplugin")
 	finish
@@ -22,6 +27,12 @@ endif
 if ! exists('g:groffviewer_options')
     let g:groffviewer_options = ' '
 endif
+
+" function! s:GetText()
+" 	echom "In get text"
+" 	let text = "hello file"
+" 	return text
+" endfunction
 
 " Runs groff to produce postscript temp file
 function! s:SaveTempPS(options)
@@ -49,9 +60,19 @@ endfunction
 
 " Produces temp file with no options, presents word and line count to user
 function! CountWords()
+	" see :help getlines
+	let start = line('.')
+	let end = search("^$") - 1
+	let lines = getline(start, end)
+	echom lines
+	" let blob = readfile("blob.txt")
+	" let blob = 0z + "hi there"
+	" call writefile(blob, "hello.txt")
 	call s:SaveTempPS(" ")
 	let l:words = split(system("! ps2ascii " . b:tempName . " | wc -l -w", " "))
+	" let l:words2 = split(system("silent !groff -m " . macro . " -T utf8 '" . fullPath . "' | wc -l -w", " "))
 	redraw
+	" echom "Words: " . l:words[1] . ", Lines: " . l:words[0] . "Words2: " . l:words2[1] . ", Lines2: " . l:words2[0]
 	echom "Words: " . l:words[1] . ", Lines: " . l:words[0]
 	call s:SaveTempPS(g:groffviewer_options)
 endfunction
