@@ -64,7 +64,8 @@ function! CountWords()
 	let start = line('.')
 	let end = search("^$") - 1
 	let lines = getline(start, end)
-	echom lines
+	echom len(split(lines[0], '\W\+'))
+	" echom lines[0].wordcount().words
 	" let blob = readfile("blob.txt")
 	" let blob = 0z + "hi there"
 	" call writefile(blob, "hello.txt")
