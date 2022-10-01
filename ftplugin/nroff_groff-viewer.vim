@@ -61,18 +61,20 @@ endfunction
 " Produces temp file with no options, presents word and line count to user
 function! CountWords()
 	" see :help getlines
-	let start = line('.')
-	let end = search("^$") - 1
+	let start = line('0')
+	let end = line("$")
 	let lines = getline(start, end)
-	echom lines[0]
-	" Can be used to find section beginning .SOMETHING HERE " and just delete it
-	echom substitute(lines[0], '\d\+', 'blah', '')
-	" Counts words in line
-	echom len(split(lines[0], '\W\+'))
-	" echom lines[0].wordcount().words
-	" let blob = readfile("blob.txt")
-	" let blob = 0z + "hi there"
-	" call writefile(blob, "hello.txt")
+	echom lines[6]
+	" Can be used to find section beginning .SOMETHING HERE " replaces with
+	" SOMETHING HERE
+	echom substitute(lines[6], '^\..*"\(.*\)"$', '\1', '')
+" BUT
+	" So the worst you will get is:
+" .i """Master Control\|"""
+
+" This gets all of it, apart from last two speech marks:
+" :%s/^\..*"\{1,3}\(\w.*\)"/\1/gc
+	echom len(split(lines[6], '\W\+'))
 	call s:SaveTempPS(" ")
 	let l:words = split(system("! ps2ascii " . b:tempName . " | wc -l -w", " "))
 	" let l:words2 = split(system("silent !groff -m " . macro . " -T utf8 '" . fullPath . "' | wc -l -w", " "))
