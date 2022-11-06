@@ -60,27 +60,37 @@ endfunction
 
 " Produces temp file with no options, presents word and line count to user
 function! CountWords()
+	" TODO: Change all of this to just create a new buffer using intermediate output:
+	" groff -ms -Z -T utf8 doctitle.ms
 	" see :help getlines
 	let start = line('0')
 	let end = line("$")
 	let lines = getline(start, end)
-	echom lines[6]
+	" echom lines[9]
 	" Can be used to find section beginning .SOMETHING HERE " replaces with
 	" SOMETHING HERE
-	echom substitute(lines[6], '^\..*"\(.*\)"$', '\1', '')
+	" echom substitute(lines[9], '^\..*"\(.*\)"$', '\1', '')
+	" let clean_line = substitute(lines[9], '^\..*"\{1,3}\(\w.*\)"', '\1', '')
 " BUT
 	" So the worst you will get is:
 " .i """Master Control\|"""
 
 " This gets all of it, apart from last two speech marks:
 " :%s/^\..*"\{1,3}\(\w.*\)"/\1/gc
-	echom len(split(lines[6], '\W\+'))
+	" echom len(split(clean_line, '\W\+'))
+	let total_words = 0
+	let ignore = 0
+	for line in lines
+	  let clean_line = substitute(line, '^\..*"\{1,3}\(\w.*\)"', '\1', '')
+		let total_words = total_words + len(split(clean_line, '\W\+'))
+	endfor
 	call s:SaveTempPS(" ")
-	let l:words = split(system("! ps2ascii " . b:tempName . " | wc -l -w", " "))
+	" let l:words = split(system("! ps2ascii " . b:tempName . " | wc -l -w", " "))
 	" let l:words2 = split(system("silent !groff -m " . macro . " -T utf8 '" . fullPath . "' | wc -l -w", " "))
 	redraw
 	" echom "Words: " . l:words[1] . ", Lines: " . l:words[0] . "Words2: " . l:words2[1] . ", Lines2: " . l:words2[0]
-	echom "Words: " . l:words[1] . ", Lines: " . l:words[0]
+	" echom "Words: " . l:words[1] . ", Lines: " . l:words[0]
+	echom "Words: " . total_words
 	call s:SaveTempPS(g:groffviewer_options)
 endfunction
 
