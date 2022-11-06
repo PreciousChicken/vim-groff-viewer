@@ -60,6 +60,16 @@ endfunction
 
 " Produces temp file with no options, presents word and line count to user
 function! CountWords()
+	let test_read = system("groff -ms -Z -T utf8 doctitle.ms")
+	let read = split(test_read, '\n')
+	let new_wordcount = 0
+	for line in read
+		if line =~ '^t'
+			let new_wordcount += 1
+		endif
+		echom line
+	  echom new_wordcount
+	endfor
 	" TODO: Change all of this to just create a new buffer using intermediate output:
 	" groff -ms -Z -T utf8 doctitle.ms
 	" see :help getlines
