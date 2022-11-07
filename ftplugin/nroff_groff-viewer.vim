@@ -69,9 +69,9 @@ function! CountWords()
 	return "Words: " . l:word_count . ", Characters: " . l:char_count
 endfunction
 
-nnoremap <Leader>o :call OpenViewer()<CR>
-nnoremap <Leader>p :call PrintPS()<CR>
-nnoremap <Leader>wc :echom CountWords()<CR>
+nnoremap <localleader>o :call OpenViewer()<CR>
+nnoremap <localleader>p :call PrintPS()<CR>
+nnoremap <localleader>wc :echom CountWords()<CR>
 
 " Runs SaveTempPS on user :w command
 augroup savetemp
