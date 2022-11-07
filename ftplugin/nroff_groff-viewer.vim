@@ -1,13 +1,8 @@
 " vim-groff-viewer: Displays groff files in document viewer
-" Last Change:	2022 Sep 10
+" Last Change:	2022 Nov 7
 " Maintainer:	gene@preciouschicken.com
 " License:	Apache-2.0
 " URL: https://github.com/PreciousChicken/vim-groff-viewer
-
-
-" TODO: From help:
-" <		Can also be used as a |method|: >
-" 			GetText()->writefile("thefile")
 
 " Disabling option per :help write-filetype-plugin
 if exists("b:did_ftplugin")
@@ -28,89 +23,59 @@ if ! exists('g:groffviewer_options')
     let g:groffviewer_options = ' '
 endif
 
-" function! s:GetText()
-" 	echom "In get text"
-" 	let text = "hello file"
-" 	return text
-" endfunction
-
-" Runs groff to produce postscript temp file
-function! s:SaveTempPS(options)
+" Runs groff and returns array seperated by new lines
+function! s:ExecuteGroff(options)
 	let fullPath = expand('%:p')
 	" reads macro package (e.g. ms, mom) from file extension
 	let macro = expand('%:e')
-	execute "silent !groff -m " . macro . " " . a:options . " '" . fullPath . "' > " . b:tempName
+	let l:groff_out = system("groff -m " . macro . " " . a:options . " '" . fullPath . "'")
+	return split(l:groff_out, '\n')
 endfunction
 
-" Opens viewer loads temp file
+" Saves output of groff as temporary file
+function! s:SaveTempPS()
+	let l:groff_out_clean = s:ExecuteGroff(g:groffviewer_options)
+	call writefile(l:groff_out_clean, b:tempName)
+endfunction
+
+" Opens viewer loads temporary file
 function! OpenViewer()
-	call s:SaveTempPS(g:groffviewer_options)
+	call s:SaveTempPS()
 	execute "silent !" . g:groffviewer_default . " " . b:tempName . " &"
 	redraw
 	echom "Opening " . expand('%:t') . " with " . g:groffviewer_default . " viewer."
 endfunction
 
-" Runs groff to produce ps on printer
+" Calls function that saves groff as temporary file, prints that temporary file
 function! PrintPS()
-	call s:SaveTempPS(g:groffviewer_options)
+	call s:SaveTempPS()
 	execute "silent !lp " . b:tempName
 	redraw
 	echom "Printing " . expand('%:t') . "."
 endfunction
 
-" Produces temp file with no options, presents word and line count to user
+" Runs groff using intermediate output option, does not save temp file
+" Outputs word count and characters on status line
 function! CountWords()
-	let test_read = system("groff -ms -Z -T utf8 doctitle.ms")
-	let read = split(test_read, '\n')
-	let new_wordcount = 0
-	for line in read
+	let l:groff_out_clean = s:ExecuteGroff("-Z -T utf8")
+	let l:char_count = 0
+	let l:word_count = 0
+	for line in l:groff_out_clean
 		if line =~ '^t'
-			let new_wordcount += 1
+			let l:char_count = l:char_count + strchars(line) - 1
+			let l:word_count += 1
 		endif
-		echom line
-	  echom new_wordcount
 	endfor
-	" TODO: Change all of this to just create a new buffer using intermediate output:
-	" groff -ms -Z -T utf8 doctitle.ms
-	" see :help getlines
-	let start = line('0')
-	let end = line("$")
-	let lines = getline(start, end)
-	" echom lines[9]
-	" Can be used to find section beginning .SOMETHING HERE " replaces with
-	" SOMETHING HERE
-	" echom substitute(lines[9], '^\..*"\(.*\)"$', '\1', '')
-	" let clean_line = substitute(lines[9], '^\..*"\{1,3}\(\w.*\)"', '\1', '')
-" BUT
-	" So the worst you will get is:
-" .i """Master Control\|"""
-
-" This gets all of it, apart from last two speech marks:
-" :%s/^\..*"\{1,3}\(\w.*\)"/\1/gc
-	" echom len(split(clean_line, '\W\+'))
-	let total_words = 0
-	let ignore = 0
-	for line in lines
-	  let clean_line = substitute(line, '^\..*"\{1,3}\(\w.*\)"', '\1', '')
-		let total_words = total_words + len(split(clean_line, '\W\+'))
-	endfor
-	call s:SaveTempPS(" ")
-	" let l:words = split(system("! ps2ascii " . b:tempName . " | wc -l -w", " "))
-	" let l:words2 = split(system("silent !groff -m " . macro . " -T utf8 '" . fullPath . "' | wc -l -w", " "))
-	redraw
-	" echom "Words: " . l:words[1] . ", Lines: " . l:words[0] . "Words2: " . l:words2[1] . ", Lines2: " . l:words2[0]
-	" echom "Words: " . l:words[1] . ", Lines: " . l:words[0]
-	echom "Words: " . total_words
-	call s:SaveTempPS(g:groffviewer_options)
+	return "Words: " . l:word_count . ", Characters: " . l:char_count
 endfunction
 
 nnoremap <Leader>o :call OpenViewer()<CR>
 nnoremap <Leader>p :call PrintPS()<CR>
-nnoremap <Leader>wc :call CountWords()<CR>
+nnoremap <Leader>wc :echom CountWords()<CR>
 
 " Runs SaveTempPS on user :w command
 augroup savetemp
 	autocmd!
-	autocmd BufWritePost <buffer> call s:SaveTempPS(g:groffviewer_options)
+	autocmd BufWritePost <buffer> call s:SaveTempPS()
 augroup end
 
