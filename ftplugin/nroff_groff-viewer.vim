@@ -2,7 +2,7 @@
 " Last Change:	2022 Nov 7
 " Maintainer:	gene@preciouschicken.com
 " License:	Apache-2.0
-" URL: https://github.com/PreciousChicken/vim-groff-viewer
+" URL: https://preciouschicken.com/software/vim-groff-viewer/
 
 " Disabling option per :help write-filetype-plugin
 if exists("b:did_ftplugin")
