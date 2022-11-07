@@ -8,7 +8,7 @@ A Vim plugin for displaying [Groff](https://www.gnu.org/software/groff/) files i
 
 ## Installation, Documentation, etc
 
-All documentation can be found at [preciouschicken.com/software/vim-groff-viewer/](https://preciouschicken.com/software/vim-groff-viewer/).
+All documentation can be found at [preciouschicken.com/software/vim-groff-viewer](https://preciouschicken.com/software/vim-groff-viewer/).
 
 ## Contributing
 
