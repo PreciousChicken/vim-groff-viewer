@@ -22,8 +22,9 @@ Section 2: Usage                                    *GroffViewerUsage*
 
 With a groff file open in the current buffer select:
 
-    `<leader>o` - Open groff file in selected document viewer
-    `<leader>p` - Hard copy print groff file
+    `<localleader>o` - Open groff file in selected document viewer
+    `<localleader>p` - Hard copy print groff file
+    `<localleader>wc` - Displays word and character count
 
 Saving the file in the normal way, e.g. `:w`, will result in the groff 
 preview updating in the document viewer, providing the selected 
@@ -80,7 +81,7 @@ would be a bad choice in this regard).
 
 Setting the printer ~
 
-The `<leader>p` mapping uses the lp command to hard copy print; this 
+The `<localleader>p` mapping uses the lp command to hard copy print; this 
 assumes a default printer has been set.
 
 ====================================================================
@@ -88,6 +89,6 @@ Section 4: Further reading                 *GroffViewerFurtherReading*
 
 Known issues, contributing guidelines, changelog, etc can be found at:
 
-https://github.com/PreciousChicken/vim-groff-viewer
+https://preciouschicken.com/software/vim-groff-viewer/
 
  vim:tw=70:ts=2:ft=help
