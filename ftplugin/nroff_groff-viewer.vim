@@ -54,8 +54,8 @@ function! PrintPS()
 	echom "Printing " . expand('%:t') . "."
 endfunction
 
-" Runs groff using intermediate output option, does not save temp file
-" Outputs word count and characters on status line
+" Runs groff with intermediate output option, does not save temp file
+" Returns word and character count
 function! CountWords()
 	let l:groff_out_clean = s:ExecuteGroff("-Z -T utf8")
 	let l:char_count = 0
