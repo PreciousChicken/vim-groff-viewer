@@ -6,7 +6,8 @@ CONTENTS                                         *GroffViewerContents*
     1. Introduction ......... |GroffViewerIntroduction|
     2. Usage ................ |GroffViewerUsage|
     3. Configuration ........ |GroffViewerConfiguration|
-    4. Further reading ...... |GroffViewerFurtherReading|
+    4. Licence .............. |GroffViewerLicence|
+    5. Further reading ...... |GroffViewerFurtherReading|
 
 ====================================================================
 Section 1: Introduction                      *GroffViewerIntroduction*
@@ -34,6 +35,20 @@ The groff macro used by the plugin is determined by the file
 extension, for example the file `myfile.me` will be processed using 
 the `-me` macro package. For further information on groff file 
 extensions see man 5 groff_filenames.
+
+The wordcount functionality displays in the statusline a count of 
+printed words and characters that will be output by groff, for 
+instance the very minimal `-ms` macro document: 
+>
+  .pp
+  hello small-world
+<
+Will show as `Words: 3, Characters: 15` in the statusline.  As the 
+above example shows whitespace and hypens are not included in the 
+character count.  Unfortunately the mom macro does not support the 
+wordcount functionality, further detail is available at:
+  
+  https://savannah.gnu.org/bugs/?63581
 
 ====================================================================
 Section 2: Configuration                    *GroffViewerConfiguration*
@@ -81,14 +96,31 @@ would be a bad choice in this regard).
 
 Setting the printer ~
 
-The `<localleader>p` mapping uses the lp command to hard copy print; this 
-assumes a default printer has been set.
+The `<localleader>p` mapping uses the lp command to hard copy print; 
+this assumes a default printer has been set.
 
 ====================================================================
-Section 4: Further reading                 *GroffViewerFurtherReading*
+Section 4: Licence                                *GroffViewerLicence*
+
+Copyright 2023 PreciousChicken
+
+Licenced under the Apache Licence, Version 2.0 (the "Licence");
+you may not use this file except in compliance with the Licence.
+You may obtain a copy of the Licence at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the Licence is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or 
+implied.  See the Licence for the specific language governing 
+permissions and limitations under the Licence.
+
+====================================================================
+Section 5: Further reading                 *GroffViewerFurtherReading*
 
 Known issues, contributing guidelines, changelog, etc can be found at:
 
-https://preciouschicken.com/software/vim-groff-viewer/
+  https://preciouschicken.com/software/vim-groff-viewer/
 
  vim:tw=70:ts=2:ft=help
