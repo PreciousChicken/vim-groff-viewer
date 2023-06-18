@@ -1,5 +1,5 @@
 " vim-groff-viewer: Displays groff files in document viewer
-" Last Change:	2022 Nov 7
+" Last Change:	2023 Jun 18
 " Maintainer:	gene@preciouschicken.com
 " License:	Apache-2.0
 " URL: https://preciouschicken.com/software/vim-groff-viewer/
@@ -57,6 +57,10 @@ endfunction
 " Runs groff with intermediate output option, does not save temp file
 " Returns word and character count
 function! CountWords()
+	let macro = expand('%:e')
+		if macro == "mom"
+			return "Word count not supported for mom macro, see help GroffViewerUsage"
+		endif
 	let l:groff_out_clean = s:ExecuteGroff("-Z -T utf8")
 	let l:char_count = 0
 	let l:word_count = 0
