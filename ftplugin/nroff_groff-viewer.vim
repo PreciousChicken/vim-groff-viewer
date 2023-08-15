@@ -1,14 +1,14 @@
 " vim-groff-viewer: Displays groff files in document viewer
-" Last Change:	2023 Jun 18
+" Last Change:	2023 Aug 23
 " Maintainer:	gene@preciouschicken.com
 " License:	Apache-2.0
 " URL: https://preciouschicken.com/software/vim-groff-viewer/
 
 " Disabling option per :help write-filetype-plugin
-if exists("b:did_ftplugin")
+if exists("b:did_ftplugin_groff_viewer")
 	finish
 endif
-let b:did_ftplugin = 1
+let b:did_ftplugin_groff_viewer = 1
 
 " Creates temp file for buffer
 let b:tempName = tempname()
