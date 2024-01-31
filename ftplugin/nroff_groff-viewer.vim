@@ -33,15 +33,19 @@ function! s:ExecuteGroff(options)
 endfunction
 
 " Saves output of groff as temporary file
-function! s:SaveTempPS()
-	let l:groff_out_clean = s:ExecuteGroff(g:groffviewer_options)
-	call writefile(l:groff_out_clean, b:tempName)
+function! s:SaveTempPS(options)
+	let fullPath = expand('%:p')
+	call system("grog --run " .  a:options . " '" . fullPath . "' > " . b:tempName)
 endfunction
 
 " Opens viewer loads temporary file
 function! OpenViewer()
-	call s:SaveTempPS()
-	execute "silent !" . g:groffviewer_default . " " . b:tempName . " &"
+	call s:SaveTempPS(g:groffviewer_options)
+	let l:groff_command = g:groffviewer_default . " " . b:tempName
+	echom "groff command is " . l:groff_command
+	execute l:groff_command
+	" This works in neovim but not vim
+	" call jobstart(g:groffviewer_default . " " . b:tempName)
 	redraw
 	echom "Opening " . expand('%:t') . " with " . g:groffviewer_default . " viewer."
 endfunction
@@ -80,6 +84,6 @@ nnoremap <localleader>wc :echom CountWords()<CR>
 " Runs SaveTempPS on user :w command
 augroup savetemp
 	autocmd!
-	autocmd BufWritePost <buffer> call s:SaveTempPS()
+	autocmd BufWritePost <buffer> call s:SaveTempPS(g:groffviewer_options)
 augroup end
 
