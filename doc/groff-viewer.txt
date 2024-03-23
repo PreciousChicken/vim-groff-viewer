@@ -23,18 +23,20 @@ Section 2: Usage                                    *GroffViewerUsage*
 
 With a groff file open in the current buffer select:
 
-    `<localleader>o` - Open groff file in selected document viewer
-    `<localleader>p` - Hard copy print groff file
-    `<localleader>wc` - Displays word and character count
+`  <localleader>o` - Open groff file in selected document viewer
+`  <localleader>p` - Hard copy print groff file
+`  <localleader>wc` - Displays word and character count
 
 Saving the file in the normal way, e.g. `:w`, will result in the groff 
 preview updating in the document viewer, providing the selected 
 viewer auto-reloads.
 
-The groff macro used by the plugin is determined by the file 
-extension, for example the file `myfile.me` will be processed using 
-the `-me` macro package. For further information on groff file 
-extensions see man 5 groff_filenames.
+The groff options required are guessed by grog (see man 1 grog) which will
+guess the macro required, and whether options such as -t, -e, etc are
+required.  To see what options grog has guessed for the current buffer
+view |:messages| where it will be listed beginning with `Ran:`.  Grog can be turned off if required, see
+|GroffViewerConfiguration|.
+
 
 The wordcount functionality displays in the statusline a count of 
 printed words and characters that will be output by groff, for 
@@ -45,10 +47,19 @@ instance the very minimal `-ms` macro document:
 <
 Will show as `Words: 3, Characters: 15` in the statusline.  As the 
 above example shows whitespace and hypens are not included in the 
-character count.  Unfortunately the mom macro does not support the 
+character count.  
+
+Wordcount does not utilise grog but rather determined the macro by the file 
+extension, for example the file `myfile.me` will be processed using 
+the `-me` macro package. For further information on groff file 
+extensions see man 5 groff_filenames.  Not using grog here ensures that
+any bibliography files are not counted as part of the main body of text.
+
+Unfortunately the mom macro does not support the 
 wordcount functionality, further detail is available at:
   
   https://savannah.gnu.org/bugs/?63581
+
 
 ====================================================================
 Section 2: Configuration                    *GroffViewerConfiguration*
@@ -78,21 +89,33 @@ Setting groff options ~
 The command line options available to groff can be added via your 
 `vim.rc` / `init.vim` e.g.:
 
-`let groffviewer_options="-dpaper=a4"`
+`let groffviewer_options="-dpaper=a4 -P -l"`
 
 Using a pdf-only document viewer ~
 
 Using a document viewer that supports pdf but not postscript is 
 possible by amending the groff options in your `vim.rc` / `init.vim` 
-for pdf output. For example should you want to use ePDFView as a 
+for pdf output. For example should you want to use Sioyek as a 
 document viewer:
 
-`let groffviewer_default="epdfview"`
+`let groffviewer_default="sioyek"`
 `let groffviewer_options="-T pdf"`
 
-A pdf document viewer that auto-reloads should however still be 
-chosen otherwise the document will fail to update on write (ePDFView 
-would be a bad choice in this regard).
+A pdf document viewer that auto-reloads, as Sioyek does, should however still be 
+chosen otherwise the document will fail to update on write.
+
+Removing grog ~
+
+Should you not wish to have grog guess your groff options then add the
+following line to your `vim.rc` / `init.vim`:
+
+`let groffviewer_grog=v:false`
+
+This will however mean that the plugin will not know what macro (or other
+options should be used, so you will have to explicitly set them, for instance
+in the case of the `-me` macro you would need to add:
+
+`let groffviewer_options="-me"`
 
 Setting the printer ~
 
