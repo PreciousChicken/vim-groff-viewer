@@ -46,15 +46,17 @@ instance the very minimal `ms` macro document:
   Hello small-world?
 <
 Will show as `Words: 2, Characters: 17` in the status-line.  As the 
-above example shows whitespace is not included in the 
-character count.  
+above example shows whitespace is not included in the character
+count.  The mechanism for counting words is not entirely precise and
+is prone to slight over-counting, this should improve in future 
+versions of vim-groff-viewer.
 
 Wordcount does not utilise grog, rather the macro to be used is
 determined by the file extension, for example the file `myfile.me`
-will be processed using the `me` macro package. For further
-information on groff file extensions see man 5 groff_filenames.
-Not using grog here ensures that any bibliography files are not
-counted as part of the main body of text.
+will be processed using the `me` macro package. For further 
+information on groff file extensions see man 5 groff_filenames.  Not
+using grog here ensures that any bibliography files are not counted
+as part of the main body of text.
 
 Unfortunately the `mom` macro does not support the wordcount
 functionality, further detail is available at:
@@ -76,7 +78,8 @@ Zathura by the following Linux terminal command:
 
 Alternatively if you do not wish to make a system wide change, then 
 the plugin will ignore the xdg-open default if the following line is 
-adding to the `.vimrc` / `init.vim`, with the variable as the postscript viewer:
+adding to the `.vimrc` / `init.vim`, with the variable as the postscript 
+viewer:
 
 `let groffviewer_default="zathura"`
 
