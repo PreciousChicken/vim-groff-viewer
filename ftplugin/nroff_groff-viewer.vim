@@ -1,5 +1,5 @@
 " vim-groff-viewer: Displays groff files in document viewer
-" Last Change:	2024 Mar 23
+" Last Change:	2024 Mar 24
 " Maintainer:	gene@preciouschicken.com
 " License:	Apache-2.0
 " URL: https://preciouschicken.com/software/vim-groff-viewer/
@@ -27,15 +27,6 @@ endif
 if ! exists('g:groffviewer_options')
   let g:groffviewer_options = ' '
 endif
-
-" Runs groff and returns array seperated by new lines, called by CountWords()
-function! s:IntermediateOutput(options)
-  let fullPath = shellescape(expand('%:p'))
-  " reads macro package (e.g. ms, mom) from file extension
-  let macro = expand('%:e')
-  let l:groff_out = system("groff -m " . macro . " " . a:options . " '" . fullPath . "'")
-  return split(l:groff_out, '\n')
-endfunction
 
 " Saves output of groff as temporary file
 function! s:SaveTempPS(options)
@@ -79,8 +70,9 @@ function! PrintPS(options)
   echom "Printing " . expand('%:t') . "."
 endfunction
 
-" Runs groff with intermediate output option, does not save temp file
-" Returns word and character count
+" Returns word and character count, does not save temp file
+" This works by running groff with intermediate output format
+" See man 5 groff_out, each word printed on new line preceded by t
 function! CountWords()
   let macro = expand('%:e')
   if macro == "mom"
@@ -90,8 +82,11 @@ function! CountWords()
   let l:char_count = 0
   let l:word_count = 0
   for line in l:groff_out_clean
+    " Selects lines beginning with t, these represent words
     if line =~ '^t'
+      " Counts characters on line, minus 1 for the starting t
       let l:char_count = l:char_count + strchars(line) - 1
+      " Counts words on each line
       let l:word_count += 1
     endif
   endfor
@@ -100,6 +95,15 @@ function! CountWords()
   else
     return "Words: " . l:word_count . ", Characters: " . l:char_count
   endif
+endfunction
+
+" Runs groff and returns array seperated by new lines, called by CountWords()
+function! s:IntermediateOutput(options)
+  let fullPath = shellescape(expand('%:p'))
+  " reads macro package (e.g. ms, mom) from file extension
+  let macro = expand('%:e')
+  let l:groff_out = system("groff -m " . macro . " " . a:options . " '" . fullPath . "'")
+  return split(l:groff_out, '\n')
 endfunction
 
 nnoremap <localleader>o :call OpenViewer(g:groffviewer_options, g:groffviewer_default)<CR>
