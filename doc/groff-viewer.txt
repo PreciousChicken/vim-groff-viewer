@@ -27,36 +27,36 @@ With a groff file open in the current buffer select:
 `  <localleader>p` - Hard copy print groff file
 `  <localleader>wc` - Displays word and character count
 
-Saving the file in the normal way, e.g. `:w`, will result in the groff 
-preview updating in the document viewer, providing the selected 
+Saving the file in the normal way, e.g. `:w`, will result in the 
+groff preview updating in the document viewer, providing the selected 
 viewer auto-reloads.
 
-The groff options required are guessed by grog (see man 1 grog) which will
-guess the macro required, and whether options such as -t, -e, etc are
-required.  To see what options grog has guessed for the current buffer
-view |:messages| where it will be listed beginning with `Ran:`.  Grog can be turned off if required, see
+The groff options required are guessed by grog (see man 1 grog) which
+will guess the macro required, and whether options such as -t, -e, 
+etc are required.  To see what options grog has guessed for the 
+current buffer view |:messages| where it will be listed beginning with 
+`Ran:`.  Grog can be turned off if required, see 
 |GroffViewerConfiguration|.
 
-
-The wordcount functionality displays in the statusline a count of 
+The wordcount functionality displays in the |status-line| a count of 
 printed words and characters that will be output by groff, for 
 instance the very minimal `-ms` macro document: 
 >
   .pp
-  hello small-world
+  Hello small-world?
 <
-Will show as `Words: 3, Characters: 15` in the statusline.  As the 
+Will show as `Words: 3, Characters: 20` in the statusline.  As the 
 above example shows whitespace and hypens are not included in the 
 character count.  
 
 Wordcount does not utilise grog but rather determined the macro by the file 
 extension, for example the file `myfile.me` will be processed using 
 the `-me` macro package. For further information on groff file 
-extensions see man 5 groff_filenames.  Not using grog here ensures that
-any bibliography files are not counted as part of the main body of text.
+extensions see man 5 groff_filenames.  Not using grog here ensures 
+that any bibliography files are not counted as part of the main body
+of text.
 
-Unfortunately the mom macro does not support the 
-wordcount functionality, further detail is available at:
+Unfortunately the mom macro does not support the wordcount functionality, further detail is available at:
   
   https://savannah.gnu.org/bugs/?63581
 
@@ -104,16 +104,15 @@ document viewer:
 A pdf document viewer that auto-reloads, as Sioyek does, should however still be 
 chosen otherwise the document will fail to update on write.
 
-Removing grog ~
+Disabling grog ~
 
-Should you not wish to have grog guess your groff options then add the
-following line to your `vim.rc` / `init.vim`:
+Should you not wish to have grog guess your groff options then add 
+the following line to your `vim.rc` / `init.vim`:
 
 `let groffviewer_grog=v:false`
 
-This will however mean that the plugin will not know what macro (or other
-options should be used, so you will have to explicitly set them, for instance
-in the case of the `-me` macro you would need to add:
+This will however mean that the plugin will not know what macro (or other options) should be used, so you will have to explicitly set
+them, for instance in the case of the `-me` macro you would need to add:
 
 `let groffviewer_options="-me"`
 
@@ -125,9 +124,9 @@ this assumes a default printer has been set.
 ====================================================================
 Section 4: Licence                                *GroffViewerLicence*
 
-Copyright 2023 PreciousChicken
+Copyright 2024 PreciousChicken
 
-Licenced under the Apache Licence, Version 2.0 (the "Licence");
+Licensed under the Apache Licence, Version 2.0 (the "Licence");
 you may not use this file except in compliance with the Licence.
 You may obtain a copy of the Licence at
 
