@@ -10,6 +10,11 @@ if exists("b:did_ftplugin_groff_viewer")
 endif
 let b:did_ftplugin_groff_viewer = 1
 
+" Allows user to remove mappings
+if !exists('g:groffviewer_no_mappings')
+  let g:groffviewer_no_mappings = v:false
+endif
+
 " Creates temp file for buffer
 let b:tempName = tempname()
 
@@ -106,9 +111,12 @@ function! s:IntermediateOutput(options)
   return split(l:groff_out, '\n')
 endfunction
 
-nnoremap <localleader>o :call OpenViewer(g:groffviewer_options, g:groffviewer_default)<CR>
-nnoremap <localleader>p :call PrintPS(g:groffviewer_options)<CR>
-nnoremap <localleader>wc :echom CountWords()<CR>
+if (! exists("no_plugin_maps") || ! no_plugin_maps) &&
+      \ (! exists("g:groffviewer_no_mappings") || ! g:groffviewer_no_mappings) 
+  nnoremap <localleader>o :call OpenViewer(g:groffviewer_options, g:groffviewer_default)<CR>
+  nnoremap <localleader>p :call PrintPS(g:groffviewer_options)<CR>
+  nnoremap <localleader>wc :echom CountWords()<CR>
+endif
 
 " Runs SaveTempPS on user :w command
 augroup savetemp
