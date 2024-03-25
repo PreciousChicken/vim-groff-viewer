@@ -112,7 +112,7 @@ nnoremap <localleader>wc :echom CountWords()<CR>
 
 " Runs SaveTempPS on user :w command
 augroup savetemp
-  autocmd!
+  autocmd! * <buffer>
   autocmd BufWritePost <buffer> call s:SaveTempPS(g:groffviewer_options)
 augroup end
 
