@@ -83,7 +83,7 @@ function! CountWords()
   if macro == "mom"
     return "Word count not supported for mom macro, see help GroffViewerUsage"
   endif
-  let l:groff_out_clean = s:IntermediateOutput("-Z -T utf8")
+  let l:groff_out_clean = s:IntermediateOutput("-m " . macro . " -Z -T utf8")
   let l:char_count = 0
   let l:word_count = 0
   for line in l:groff_out_clean
@@ -105,9 +105,7 @@ endfunction
 " Runs groff and returns array seperated by new lines, called by CountWords()
 function! s:IntermediateOutput(options)
   let fullPath = shellescape(expand('%:p'))
-  " reads macro package (e.g. ms, mom) from file extension
-  let macro = expand('%:e')
-  let l:groff_out = system("groff -m " . macro . " " . a:options . " '" . fullPath . "'")
+  let l:groff_out = system("groff " . a:options . " '" . fullPath . "'")
   return split(l:groff_out, '\n')
 endfunction
 
