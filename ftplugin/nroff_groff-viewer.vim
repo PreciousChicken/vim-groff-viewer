@@ -110,7 +110,8 @@ function! s:IntermediateOutput(options)
 endfunction
 
 if (! exists("no_plugin_maps") || ! no_plugin_maps) &&
-      \ (! exists("g:groffviewer_no_mappings") || ! g:groffviewer_no_mappings) 
+      \ (! exists("g:groffviewer_no_mappings") || 
+      \ ! g:groffviewer_no_mappings) 
   nnoremap <localleader>o :call OpenViewer(g:groffviewer_options, g:groffviewer_default)<CR>
   nnoremap <localleader>p :call PrintPS(g:groffviewer_options)<CR>
   nnoremap <localleader>wc :echom CountWords()<CR>

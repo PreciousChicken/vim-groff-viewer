@@ -63,7 +63,6 @@ functionality, further detail is available at:
   
   https://savannah.gnu.org/bugs/?63581
 
-
 ====================================================================
 Section 3: Configuration                    *GroffViewerConfiguration*
 
@@ -128,6 +127,16 @@ Setting the printer ~
 
 The `<localleader>p` mapping uses the lp command to hard copy print; 
 this assumes a default printer has been set.
+
+Disabling keymappings ~
+
+To disable the default keymappings, as specified at *GroffViewerUsage*,
+then add the following line to your `vim.rc` / `init.vim`:
+
+`let groffviewer_no_mappings=v:true`
+
+Default keymappings are also disabled if `no_plugin_maps` has been 
+set by the user.
 
 ====================================================================
 Section 4: Licence                                *GroffViewerLicence*
