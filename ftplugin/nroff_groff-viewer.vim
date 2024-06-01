@@ -1,5 +1,5 @@
 " vim-groff-viewer: Displays groff files in document viewer
-" Last Change:	2024 Mar 24
+" Last Change:	2024 Jun 1
 " Maintainer:	gene@preciouschicken.com
 " License:	Apache-2.0
 " URL: https://preciouschicken.com/software/vim-groff-viewer/
